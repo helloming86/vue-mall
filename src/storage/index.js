@@ -10,7 +10,7 @@ export default {
       let val = this.getItem(moduleName)
       if (val) return val[key]
     }
-    return this.getStorage()[key]
+    return this.getStorage()[key] || {} // 解决一个Bug: 当对象中找不到key对应的value即返回undefined时，使用 || 返回一个空对象{}
   },
   // 存储值
   setItem (key, value, moduleName) {
@@ -31,6 +31,7 @@ export default {
   clear (key, moduleName) {
     let val = this.getStorage()
     if (moduleName) {
+      if (!val[moduleName]) return
       delete val[moduleName][key]
     } else {
       delete val[key]
