@@ -12,7 +12,7 @@ export default {
   mounted () {
     storage.setItem('aaa', 'sss')
     storage.setItem('sex', 'male', 'user')
-    storage.clear('aaa')
+    storage.clear('abc')
   }
 }
 </script>

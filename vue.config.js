@@ -6,6 +6,20 @@ function resolve (dir) {
 
 module.exports = {
   lintOnSave: true,
+  devServer: {
+    host: 'localhost',
+    port: 8080,
+    // 接口代理，最简单最安全，跨域
+    proxy: {
+      '/api': {
+        target: 'http://github.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': ''
+        }
+      }
+    }
+  },
   chainWebpack: (config) => {
     config.resolve.alias
       .set('@', resolve('src'))
