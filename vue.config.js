@@ -10,12 +10,13 @@ module.exports = {
     host: 'localhost',
     port: 8080,
     // 接口代理，最简单最安全，跨域
+    // Mock设置：使用静态json文件，public/mock
     proxy: {
       '/api': {
-        target: 'http://github.com',
+        target: 'http://localhost:8080',
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''
+          '^/api': '/mock'
         }
       }
     }

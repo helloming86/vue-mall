@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import env from '../env.config'
+// import env from '../env.config'
 
 // 根据前端的跨域方式进行调整 a.CORS b.JsonP c.接口代理 配置不同
 // 下面通过 接口代理方式 进行跨域处理
