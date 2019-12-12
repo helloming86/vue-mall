@@ -5,8 +5,15 @@
 </template>
 
 <script>
+// import storage from '@/storage/index' 等同于
+import storage from '@/storage'
 export default {
-  name: 'Index'
+  name: 'Index',
+  mounted () {
+    storage.setItem('aaa', 'sss')
+    storage.setItem('sex', 'male', 'user')
+    storage.clear('aaa')
+  }
 }
 </script>
 
