@@ -6,6 +6,16 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 // import env from '../env.config'
 
+// mockjs通过拦截请求和数据的形式实现模拟返回，实际并没有真正成功的请求
+// mockjs配置
+// 开关
+const mock = true
+if (mock) {
+  // import 是预编译加载，编译的时候导入的文件就会被加载写入内存
+  // require 是从上到下执行到的时候才会加载，当mock为false时就不会加载
+  require('@/mock/api')
+}
+
 // 根据前端的跨域方式进行调整 a.CORS b.JsonP c.接口代理 配置不同
 // 下面通过 接口代理方式 进行跨域处理
 // 1. 配置 axios.defaults.baseURL 为 /api 2. vue.config.js 配置proxy

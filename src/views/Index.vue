@@ -19,7 +19,7 @@ export default {
     storage.setItem('sex', 'male', 'user')
     storage.clear('abc')
     // Mock实现：使用静态json文件，public/mock
-    this.axios.get('/user/login.json').then((res) => {
+    this.axios.get('/user/login').then((res) => {
       this.res = res
       console.log(res)
     })
