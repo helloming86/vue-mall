@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import VueLazyload from 'vue-lazyload'
 // import env from '../env.config'
 
 // mockjs通过拦截请求和数据的形式实现模拟返回，实际并没有真正成功的请求
@@ -40,6 +41,11 @@ axios.interceptors.response.use(function (response) {
 
 // 注册插件，将axios挂载到VueAxios上，通过this.axios进行调用
 Vue.use(VueAxios, axios)
+
+// 图片懒加载
+Vue.use(VueLazyload, {
+  loading: '/imgs/loading-svg/loading-bars.svg'
+})
 
 Vue.config.productionTip = false
 
