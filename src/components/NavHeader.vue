@@ -250,6 +250,7 @@ export default {
               opacity: 0;
               overflow: hidden;
               transition: all .5s;
+              background-color: $colorG;
               border-top: 1px solid $colorH;
               box-shadow: 0 7px 6px 0 rgba(0, 0, 0, 0.11);
               z-index: 10;

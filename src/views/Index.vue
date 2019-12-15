@@ -1,28 +1,16 @@
 <template>
   <div>
     Main Index
+    <service-bar></service-bar>
   </div>
 </template>
 
 <script>
-// import storage from '@/storage/index' 等同于
-import storage from '@/storage'
+import ServiceBar from '@/components/ServiceBar'
 export default {
   name: 'Index',
-  data () {
-    return {
-      res: {}
-    }
-  },
-  mounted () {
-    storage.setItem('aaa', 'sss')
-    storage.setItem('sex', 'male', 'user')
-    storage.clear('abc')
-    // Mock实现：使用静态json文件，public/mock
-    this.axios.get('/user/login').then((res) => {
-      this.res = res
-      console.log(res)
-    })
+  components: {
+    ServiceBar
   }
 }
 </script>
