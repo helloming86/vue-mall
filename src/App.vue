@@ -4,25 +4,9 @@
   </div>
 </template>
 
+<!-- 在Vue文件中的style标签上有一个特殊的属性，scoped。
+  当一个style标签拥有scoped属性时候，它的css样式只能用于当前的Vue组件，可以使组件的样式不相互污染。
+  reset需要是全局的，所以这里不能用scoped -->
 <style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+    @import "~@/assets/scss/reset.scss";
 </style>

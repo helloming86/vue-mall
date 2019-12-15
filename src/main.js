@@ -9,7 +9,7 @@ import VueAxios from 'vue-axios'
 // mockjs通过拦截请求和数据的形式实现模拟返回，实际并没有真正成功的请求
 // mockjs配置
 // 开关
-const mock = true
+const mock = false
 if (mock) {
   // import 是预编译加载，编译的时候导入的文件就会被加载写入内存
   // require 是从上到下执行到的时候才会加载，当mock为false时就不会加载
