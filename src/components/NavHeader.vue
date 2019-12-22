@@ -160,7 +160,6 @@ export default {
 
 <style lang="scss" scoped>
   @import "~@/assets/scss/config.scss";
-  @import "~@/assets/scss/base.scss";
   @import "~@/assets/scss/mixin.scss";
   .header{
     .nav-topbar{
@@ -192,7 +191,6 @@ export default {
     }
     .nav-header{
       .container{
-        /* base.scss 有container的基础样式，导入后会继承，先继承后重写或新增*/
         position: relative;
         height: 112px;
         @include flex();

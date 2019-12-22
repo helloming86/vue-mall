@@ -10,6 +10,7 @@ import OrderList from '@/views/OrderList'
 import OrderPay from '@/views/OrderPay'
 import OrderConfirm from '@/views/OrderConfirm'
 import Alipay from '@/views/Alipay'
+import Login from 'views/Login'
 
 Vue.use(VueRouter)
 
@@ -71,6 +72,11 @@ const routes = [
         component: Alipay
       }
     ]
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: Login
   }
 ]
 
