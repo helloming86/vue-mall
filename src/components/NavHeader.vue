@@ -13,7 +13,7 @@
           <a href="javascript:;" v-if="!username" @click="login">登录</a>
           <a href="javascript:;">我的订单</a>
           <!-- 如果没有参数gotoCart不加括号 -->
-          <a href="javascript:;" class="my-cart" @click="gotoCart"><span class="icon-cart"></span>购物车</a>
+          <a href="javascript:;" class="my-cart" @click="gotoCart"><span class="icon-cart"></span>购物车{{cartCount}}</a>
         </div>
       </div>
     </div>
@@ -121,8 +121,15 @@ export default {
   name: 'NavHeader',
   data () {
     return {
-      username: 'Nicky',
       phoneList: []
+    }
+  },
+  computed: {
+    username () {
+      return this.$store.state.username
+    },
+    cartCount () {
+      return this.$store.state.cartCount
     }
   },
   filters: {
@@ -137,7 +144,6 @@ export default {
   },
   methods: {
     getProductList () {
-      console.log('Hello')
       this.axios.get('/products', {
         params: {
           categoryId: '100012'

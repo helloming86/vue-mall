@@ -14,16 +14,16 @@
             <span>扫码登录</span>
           </h3>
           <div class="input">
-            <input type="text" placeholder="请输入账户">
+            <input type="text" placeholder="请输入账户" v-model="username">
           </div>
           <div class="input">
-            <input type="text" placeholder="请输入密码">
+            <input type="password" placeholder="请输入密码" v-model="password">
           </div>
           <div class="btn-box">
-            <a href="javascript:;" class="btn">登录</a>
+            <a href="javascript:;" class="btn" @click="login">登录</a>
           </div>
           <div class="tips">
-            <div class="sms">手机短信登录/注册</div>
+            <div class="sms" @click="register">手机短信登录/注册</div>
             <div class="reg">
               立即注册<span>|</span>忘记密码
             </div>
@@ -44,7 +44,40 @@
 
 <script>
 export default {
-  name: 'Login'
+  name: 'Login',
+  data () {
+    return {
+      username: '',
+      password: '',
+      userId: '',
+      res: {}
+    }
+  },
+  methods: {
+    login () {
+      // 使用ES6解构语法糖获取username、password
+      let { username, password } = this
+      this.axios.post('/user/login', {
+        username,
+        password
+      }).then((res) => {
+        console.log(res) // 这里的res只包含接口response的data，是因为我们在main.js做了接口拦截，如果成功，只返回返回信息的data部分
+        this.$cookie.set('userId', res.id, { expires: '1M' })
+        console.log(this.$cookie.get('userId'))
+        this.$store.dispatch('saveUsername', res.username)
+        this.$router.push('/index')
+      })
+    },
+    register () {
+      this.axios.post('/user/register', {
+        username: 'hello',
+        password: 'world',
+        email: 'helloworld@qq.com'
+      }).then((res) => {
+        alert('注册成功')
+      })
+    }
+  }
 }
 </script>
 
