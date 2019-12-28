@@ -5,9 +5,9 @@
         {{propTitle}}
       </div>
       <div class="pro-param">
-        <a href="">概述</a><span>|</span>
-        <a href="">参数</a><span>|</span>
-        <a href="">用户评价</a>
+        <a href="javascript:;">概述</a><span>|</span>
+        <a href="javascript:;">参数</a><span>|</span>
+        <a href="javascript:;">用户评价</a>
         <slot name="buy"/>
       </div>
     </div>
@@ -48,6 +48,7 @@ export default {
     line-height: 70px;
     border: 1px solid $colorH;
     background-color: $colorG;
+    z-index: 10;
     &.is_fixed{
       position: fixed;
       top: 0;
@@ -65,7 +66,6 @@ export default {
         font-size: $fontJ;
         span{
           margin: 0 10px;
-
         }
         a{
           color: $colorC;

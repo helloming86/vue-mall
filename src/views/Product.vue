@@ -1,6 +1,6 @@
 <template>
   <div class="product">
-    <product-param v-bind:propTitle="product.name">
+    <product-param v-bind:prop-title="product.name">
       <template v-slot:buy>
         <button class="btn" @click="buy">立即购买</button>
       </template>
