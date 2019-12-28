@@ -222,16 +222,15 @@ export default {
       })
     },
     addCart (id) {
-      this.showModal = true
-      // 因为还没有实现login，暂时屏蔽
-      // this.axios.post('/carts', {
-      //   productId: id,
-      //   selected: true
-      // }).then((res) => {
-      //
-      // }).catch((res) => {
-      //   this.showModal = true
-      // })
+      this.axios.post('/carts', {
+        productId: id,
+        selected: true
+      }).then((res) => {
+        this.showModal = true
+        this.$store.dispatch('saveCartCount', res.cartTotalQuantity)
+      }).catch((res) => {
+        this.showModal = true
+      })
     },
     goToCart () {
       this.$router.push('/cart')
