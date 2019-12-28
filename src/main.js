@@ -35,7 +35,6 @@ axios.interceptors.response.use(function (response) {
   if (res.status === 0) {
     return res.data
   } else if (res.status === 10) {
-    // eslint-disable-next-line eqeqeq
     if (path !== '/index') {
       window.location.href = '/login'
     }
