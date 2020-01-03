@@ -6,7 +6,11 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueLazyload from 'vue-lazyload'
 import VueCookie from 'vue-cookie'
+import { Message } from 'element-ui'
+// import 'element-ui/lib/theme-chalk/index.css'
 // import env from '../env.config'
+
+Vue.prototype.$message = Message
 
 // mockjs通过拦截请求和数据的形式实现模拟返回，实际并没有真正成功的请求
 // mockjs配置
@@ -40,7 +44,7 @@ axios.interceptors.response.use(function (response) {
     }
     return Promise.reject(res)
   } else {
-    alert(res.msg)
+    Message.warning(res.msg)
     return Promise.reject(res)
   }
 })
