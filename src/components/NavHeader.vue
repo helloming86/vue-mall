@@ -11,6 +11,7 @@
         <div class="topbar-user">
           <a href="javascript:;" v-if="username">{{username}}</a>
           <a href="javascript:;" v-if="!username" @click="login">登录</a>
+          <a href="javascript:;" v-if="username" @click="logout">退出</a>
           <a href="javascript:;">我的订单</a>
           <!-- 如果没有参数gotoCart不加括号 -->
           <a href="javascript:;" class="my-cart" @click="gotoCart"><span class="icon-cart"></span>购物车{{cartCount}}</a>
@@ -141,6 +142,11 @@ export default {
   },
   mounted () {
     this.getProductList()
+    // this.getCartCount()
+    let params = this.$route.params
+    if (params && params.from === 'login') {
+      this.getCartCount()
+    }
   },
   methods: {
     getProductList () {
@@ -157,8 +163,21 @@ export default {
     gotoCart () {
       this.$router.push('/cart')
     },
+    getCartCount () {
+      this.axios.get('/carts/products/sum').then((res) => {
+        this.$store.dispatch('saveCartCount', res)
+      })
+    },
     login () {
       this.$router.push('/login')
+    },
+    logout () {
+      this.axios.post('/user/logout').then(() => {
+        this.$message.success('退出成功')
+        this.$cookie.set('userId', '', { expires: '-1' })
+        this.$store.dispatch('saveUsername', '')
+        this.$store.dispatch('saveCartCount', '0')
+      })
     }
   }
 }

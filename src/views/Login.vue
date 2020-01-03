@@ -62,10 +62,16 @@ export default {
         password
       }).then((res) => {
         console.log(res) // 这里的res只包含接口response的data，是因为我们在main.js做了接口拦截，如果成功，只返回返回信息的data部分
-        this.$cookie.set('userId', res.id, { expires: '1M' })
+        this.$cookie.set('userId', res.id, { expires: 'Session' })
         console.log(this.$cookie.get('userId'))
         this.$store.dispatch('saveUsername', res.username)
-        this.$router.push('/index')
+        // this.$router.push('/index')
+        this.$router.push({
+          name: 'index',
+          params: {
+            from: 'login'
+          }
+        })
       })
     },
     register () {

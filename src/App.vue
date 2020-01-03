@@ -8,9 +8,6 @@
 export default {
   name: 'app',
   mounted () {
-    console.log('Hello')
-    console.log(this.$cookie.get('userId'))
-    console.log('World')
     if (this.$cookie.get('userId')) {
       this.getUser()
       this.getCartCount()
