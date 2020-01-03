@@ -1,19 +1,19 @@
 <template>
   <div>
-    <order-header></order-header>
-    <router-view></router-view>
-    <order-footer></order-footer>
+    <router-view/>
+    <service-bar/>
+    <order-footer/>
   </div>
 </template>
 
 <script>
-import OrderHeader from '@/components/OrderHeader'
+import ServiceBar from 'components/ServiceBar'
 import OrderFooter from '@/components/OrderFooter'
 
 export default {
   name: 'Order',
   components: {
-    OrderHeader,
+    ServiceBar,
     OrderFooter
   }
 }
