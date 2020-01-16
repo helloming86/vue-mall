@@ -33,7 +33,7 @@ export default {
         this.content = res.content
         setTimeout(() => {
           document.forms[0].submit()
-        })
+        }, 100)
       })
     }
   }
