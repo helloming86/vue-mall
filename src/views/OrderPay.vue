@@ -52,16 +52,31 @@
       </div>
     </div>
     <scan-pay-code v-if="showPay" @close="closePayModal" :img="payImg"/>
+    <modal
+      title="支付确认"
+      btn-type="3"
+      :show-modal="showPayModal"
+      sure-text="查看订单"
+      cancel-text="未支付"
+      @cancel="showPayModal=false"
+      @submit="goOrderList"
+    >
+      <template v-slot:body>
+        <p>确认是否完成支付？</p>
+      </template>
+    </modal>
   </div>
 </template>
 
 <script>
 import QRCode from 'qrcode'
 import ScanPayCode from 'components/ScanPayCode'
+import Modal from 'components/Modal'
 export default {
   name: 'OrderPay',
   components: {
-    ScanPayCode
+    ScanPayCode,
+    Modal
   },
   data () {
     return {
@@ -72,7 +87,8 @@ export default {
       showDetail: false, // 是否显示订单详情
       payType: 1, // 支付方式 1 支付宝 2 微信
       showPay: false, // 是否显示微信支付弹框
-      payImg: '' // 微信支付二维码
+      payImg: '', // 微信支付二维码
+      showPayModal: false // 是否显示二次支付确认弹框
     }
   },
   mounted () {
@@ -110,6 +126,10 @@ export default {
     },
     closePayModal () {
       this.showPay = false
+      this.showPayModal = true
+    },
+    goOrderList () {
+      this.$router.push('/order/list')
     }
   }
 }
