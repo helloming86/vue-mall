@@ -88,7 +88,8 @@ export default {
       payType: 1, // 支付方式 1 支付宝 2 微信
       showPay: false, // 是否显示微信支付弹框
       payImg: '', // 微信支付二维码
-      showPayModal: false // 是否显示二次支付确认弹框
+      showPayModal: false, // 是否显示二次支付确认弹框
+      T: '' // 定时器ID
     }
   },
   mounted () {
@@ -117,6 +118,7 @@ export default {
             .then((url) => {
               this.showPay = true
               this.payImg = url
+              this.loopOrderState()
             })
             .catch(() => {
               this.$message.error('微信二维码生成失败')
@@ -127,6 +129,18 @@ export default {
     closePayModal () {
       this.showPay = false
       this.showPayModal = true
+      clearInterval(this.T)
+    },
+    // 轮询当前订单支付状态
+    loopOrderState () {
+      this.T = setInterval(() => {
+        this.axios.get(`/orders/${this.orderNo}`).then((res) => {
+          if (res.status === 20) {
+            clearInterval(this.T)
+            this.goOrderList()
+          }
+        })
+      }, 1000)
     },
     goOrderList () {
       this.$router.push('/order/list')
