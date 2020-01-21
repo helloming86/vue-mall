@@ -30,5 +30,6 @@ module.exports = {
       .set('views', resolve('src/views'))
       .set('router', resolve('src/router'))
       .set('store', resolve('src/store'))
+    config.plugins.delete('prefetch') // 删除预加载
   }
 }

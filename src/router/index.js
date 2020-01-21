@@ -2,15 +2,16 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home.vue'
 import Index from '@/views/Index'
-import Product from '@/views/Product'
-import Detail from '@/views/Detail'
-import Cart from '@/views/Cart'
-import Order from '@/views/Order'
-import OrderList from '@/views/OrderList'
-import OrderPay from '@/views/OrderPay'
-import OrderConfirm from '@/views/OrderConfirm'
-import Alipay from '@/views/Alipay'
-import Login from 'views/Login'
+// import Login from 'views/Login'
+// import Product from '@/views/Product'
+// import Detail from '@/views/Detail'
+// import Cart from '@/views/Cart'
+// import Order from '@/views/Order'
+// import OrderList from '@/views/OrderList'
+// import OrderPay from '@/views/OrderPay'
+// import OrderConfirm from '@/views/OrderConfirm'
+// import Alipay from '@/views/Alipay'
+// import Login from 'views/Login'
 
 Vue.use(VueRouter)
 
@@ -32,51 +33,51 @@ const routes = [
       {
         path: '/product/:id',
         name: 'product',
-        component: Product
+        component: resolve => require(['@/views/Product.vue'], resolve)
       },
       {
         path: '/detail/:id',
         name: 'detail',
-        component: Detail
+        component: resolve => require(['@/views/Detail.vue'], resolve)
       }
     ]
   },
   {
     path: '/cart',
     name: 'cart',
-    component: Cart
+    component: () => import('@/views/Cart')
   },
   {
     path: '/order',
     name: 'order',
-    component: Order,
+    component: () => import('@/views/Order'),
     children: [
       {
         path: 'list',
         name: 'order-list',
-        component: OrderList
+        component: () => import('@/views/OrderList')
       },
       {
         path: 'pay',
         name: 'order-pay',
-        component: OrderPay
+        component: () => import('@/views/OrderPay')
       },
       {
         path: 'confirm',
         name: 'order-confirm',
-        component: OrderConfirm
+        component: () => import('@/views/OrderConfirm')
       },
       {
         path: 'alipay',
         name: 'alipay',
-        component: Alipay
+        component: () => import('@/views/Alipay')
       }
     ]
   },
   {
     path: '/login',
     name: 'login',
-    component: Login
+    component: () => import('@/views/Login')
   }
 ]
 

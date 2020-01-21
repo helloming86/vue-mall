@@ -47,7 +47,6 @@
             </div>
           </div>
           <el-pagination
-            v-if="false"
             class="pagination"
             background
             layout="prev, pager, next"
@@ -55,14 +54,6 @@
             :total="total"
             @current-change="handleChange"
           />
-          <div class="load-more">
-            <el-button v-if="false" type="primary" :loading="loading" @click="loadMore">加载更多</el-button>
-          </div>
-          <div class="scroll-more"
-            v-infinite-scroll="scrollMore" infinite-scroll-disabled="busy" infinite-scroll-distance="410"
-          >
-            <img src="/imgs/loading-svg/loading-spinning-bubbles.svg" alt="" v-show="loading">
-          </div>
           <no-data v-if="!loading && list.length===0"/>
         </div>
       </div>
@@ -92,8 +83,7 @@ export default {
       loading: false,
       pageSize: 2,
       pageNum: 1,
-      total: 0,
-      busy: false // 滚动加载是否触发
+      total: 0
     }
   },
   mounted () {
@@ -172,7 +162,7 @@ export default {
       padding-bottom: 110px;
       .order-box{
         .order {
-          @include border()
+          @include border();
           background-color: $colorG;
           margin-bottom: 31px;
           &:last-child{
@@ -215,7 +205,7 @@ export default {
               }
             }
             .good-state {
-              @include height(145px)
+              @include height(145px);
               font-size: 20px;
               color: $colorA;
               a{
