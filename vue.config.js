@@ -31,5 +31,6 @@ module.exports = {
       .set('router', resolve('src/router'))
       .set('store', resolve('src/store'))
     config.plugins.delete('prefetch') // 删除预加载
-  }
+  },
+  productionSourceMap: false // 设置为false，打包部署后就看不到源码了，更安全更高效
 }
